@@ -30,7 +30,7 @@ export default function CourseCard(cardData) {
         <img src={course} alt="Image" />
       </div>
       <div className="course-card-details">
-        <h2>{cardData.cardData.title}</h2>
+        <h2  className="course-card-details-heading">{cardData.cardData.title}</h2>
         <div className="course-card-pricing-duration">
           <div className="course-card-price">
             <h3>

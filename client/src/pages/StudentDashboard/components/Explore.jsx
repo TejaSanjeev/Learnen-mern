@@ -20,9 +20,9 @@ export default function Explore() {
 
   return (
     <div className="sd-explore-main-wrapper">
-      <SearchBar /> <br /> <br /> <br />
+      <SearchBar /> <br /> 
       <div className="sd-explore-heading">
-        <h3>Most Popular</h3>
+        <h3  className="sd-explore-heading1">Most Popular</h3>
       </div>
       <div className="explore-cards-wrapper">
         {explorecourses.map((card , index)=>(
