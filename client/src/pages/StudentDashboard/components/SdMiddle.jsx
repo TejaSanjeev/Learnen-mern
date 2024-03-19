@@ -17,6 +17,27 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 export default function SdMiddle() {
   const [schedules, setSchedules] = useState([]);
   const user = JSON.parse(localStorage.getItem("loginUser"));
+  const [assignmentslen, setAssignments] = useState([]);
+
+  const fetchAssignments = () => {
+    const user = JSON.parse(localStorage.getItem("loginUser"));
+      fetch("http://localhost:3000/api/getAssignmentsJoined",{
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          joinedRooms: user.Joined_Room,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setAssignments(data.assignments.length);
+        })
+        .catch((err) => {
+          console.error("Error fetching assignments:", err);
+        });
+    };
   useEffect(() => {
     if (user) {
       fetch("http://localhost:3000/api/getSchedule", {
@@ -33,6 +54,7 @@ export default function SdMiddle() {
         .then((data) => {
           console.log("backendSchedules",data.schedules)
           setSchedules(data.schedules);
+          fetchAssignments();
         })
         .catch((err) => {
           console.error("Error fetching schedules:", err);
@@ -64,10 +86,10 @@ export default function SdMiddle() {
             Number of Active Courses : <b>{user.Joined_Room.length}</b>
           </div>
           <div className="sd-CourseAnalyticsHead-wrapper-right">
-            Number of Assignment Pending : <b>3</b>
+            Number of Assignment Pending : <b>{assignmentslen}</b>
           </div>
         </div>
-        <div className="sd-CourseAnalytics-piechart">
+        {/* <div className="sd-CourseAnalytics-piechart">
         <ResponsiveContainer width="100%" height={270}>
         <PieChart>
           <Pie
@@ -85,7 +107,7 @@ export default function SdMiddle() {
           </Pie>
         </PieChart>
         </ResponsiveContainer>
-        </div>
+        </div> */}
       </div>
       <div className="sd-Middle-Schedule-wrapper">
         <div className="sd-Middle-ScheduleHead">My Schedule</div>

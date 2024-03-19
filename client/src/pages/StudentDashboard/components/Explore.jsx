@@ -18,36 +18,6 @@ export default function Explore() {
   }
   )
 
-  const cardData = [
-    {
-      title:"Python",
-      img : "",
-      price : "900",
-      duration : "6 months",
-      stars : "4.5"
-    },
-    {
-      title:"Java",
-      img : "",
-      price : "999",
-      duration : "6 months",
-      stars : "4.8"
-    },
-    {
-      title:"ReactJS",
-      img : "",
-      price : "449",
-      duration : "6 months",
-      stars : "3.5"
-    },
-    {
-      title:"MongoDB",
-      img : "",
-      price : "500",
-      duration : "6 months",
-      stars : "4"
-    }
-  ]
   return (
     <div className="sd-explore-main-wrapper">
       <SearchBar /> <br /> <br /> <br />

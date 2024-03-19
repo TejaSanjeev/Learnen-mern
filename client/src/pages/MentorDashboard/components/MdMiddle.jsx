@@ -17,6 +17,8 @@ const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 function MdMiddle() {
   const [schedules, setSchedules] = useState([]);
   const user = JSON.parse(localStorage.getItem("loginUser"));
+  const [data1,setData]=useState([]);
+  const [total,setTotal]=useState(0);
   useEffect(() => {
     if (user) {
       fetch("http://localhost:3000/api/getSchedule", {
@@ -31,8 +33,11 @@ function MdMiddle() {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log("backendSchedules",data.schedules)
+          // console.log("backendSchedules",data.schedules)
+          // console.log("backend",data.students)
           setSchedules(data.schedules);
+          setData(data.students)
+          setTotal(data.total)
         })
         .catch((err) => {
           console.error("Error fetching schedules:", err);
@@ -68,13 +73,13 @@ function MdMiddle() {
             Number of Courses : <b>{user.Created_Room.length}</b>
           </div>
           <div className="md-CourseAnalyticsHead-wrapper-right">
-            Number of Students : <b> 3740</b>
+            Number of Students : <b> {total}</b>
           </div>
         </div>
-        <ResponsiveContainer width="100%" height={270}>
+        <ResponsiveContainer width="100%" height={230}>
         <PieChart>
           <Pie
-            data={data}
+            data={data1}
             cx="50%"
             cy="50%"
             outerRadius={80}

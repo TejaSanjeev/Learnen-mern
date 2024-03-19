@@ -48,6 +48,8 @@ const getScheduleByCourse = async(req,res,next)=>{
 const getSchedule = async (req, res, next) => {
     try {
         let { joinedRooms, createdRooms } = req.body;
+        let students=[];
+        let total=0;
         const joinedRoomSchedules = await Room.find({ _id: { $in: joinedRooms } })
             .populate('schedule')
             .then(rooms => rooms.flatMap(room => room.schedule));
@@ -56,8 +58,18 @@ const getSchedule = async (req, res, next) => {
             .then(rooms => rooms.flatMap(room => room.schedule));
         const allSchedules = [...joinedRoomSchedules, ...createdRoomSchedules];
         const schedules= await Schedule.find({_id:{ $in: allSchedules }});
-        console.log(allSchedules);
-        res.status(200).json({ schedules: schedules });
+        // console.log(allSchedules);
+
+        for (const room of createdRooms) {
+            const roomData = await Room.findById(room);
+            if(roomData.participants.length>0){
+                total=total+parseInt(roomData.participants.length);
+                students.push({ name: roomData.title, value: roomData.participants.length });
+            }
+            
+          }
+
+        res.status(200).json({ schedules: schedules,students:students,total:total});
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Could not fetch schedules" });

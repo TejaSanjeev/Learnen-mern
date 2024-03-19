@@ -149,10 +149,11 @@
 
 .sd-CourseAnalytics-wrapper {
     width: 58vw;
-    height: 45vh;
+    height: 18vh;
     border-radius: 13px;
     background-color: #dbe2ef;
     margin-top: 3vh;
+    margin-bottom: 5vh;
 }
 
 .sd-CourseAnalyticsHead-wrapper {
