@@ -4,16 +4,32 @@
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 4px #787878;
-    padding: 1rem;
-    background-color: #2962ff;
+    padding-top: 1rem;
+    background-color: #393E46;
 }
 
+.admin-general-section{
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+.admin-general-section-name{
+    color: #EEEEEE;
+    margin: 1.2vh;
+    font-size: 2.5vh;
+}
+
+
+.admin-general-section-name-h2{
+    color: #00ADB5;
+}
 .admin-sidebar-header{
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 1rem;
     justify-content: center;
+    background-color: #EEEEEE;
 }
 
 .admin-general-child{

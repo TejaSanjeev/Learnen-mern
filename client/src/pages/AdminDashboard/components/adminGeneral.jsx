@@ -1,12 +1,3 @@
-// // import React from 'react'
-
-// export default function AdminGeneral() {
-//   return (
-//     <div className='admin-general-wrapper'>
-//       <p>Dashboard</p>
-//     </div>
-//   )
-// }
 import { faChalkboardUser, faSchool, faBug, faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from 'react'
@@ -91,7 +82,7 @@ function AdminGeneral() {
     
     <main className='main-container'>
         <div className='main-title'>
-            <h3 style={{color:'black'}} >ADMIN DASHBOARD.</h3>
+            <h3 style={{color:'#00ADB5'}} >ADMIN DASHBOARD</h3>
         </div>
 
         <div className='main-cards'>
@@ -143,7 +134,7 @@ function AdminGeneral() {
                 <YAxis />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Users" fill="#8884d8" />
+                <Bar dataKey="Users" fill="#393E46" />
                 </BarChart>
             </ResponsiveContainer>
 
