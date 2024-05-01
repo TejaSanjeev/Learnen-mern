@@ -1,10 +1,11 @@
 const express = require('express')
 const { registerUser, loginUser, logoutUser , updateUser,getUserDetails,getParticipantsByCourse } = require('../controllers/userController')
 const { getDashboard } = require('../controllers/dashboard')
-const { adminRoomList, buyCourse, getCourses,getCourse, getExploreCourses , addRoom , getCreatedCourses,getJoinedCourses } = require('../controllers/roomController')
+const { adminRoomList, buyCourse, getCourses,getCourse, getExploreCourses , addRoom , getCreatedCourses,getJoinedCourses,submitReports,getReports } = require('../controllers/roomController')
 const {createAssignment, getAssignments,getAssignmentsByCourse,getAssignmentsJoined} = require('../controllers/assignmentsController')
 const {addResource, getResourcesByCourse,getresourcesJoined} = require('../controllers/resourceControllers')
 const {addSchedule,getScheduleByCourse,getSchedule}=require("../controllers/scheduleController");
+const {getUsers,getUserName,deleteUser,deleteCourse}=require("../controllers/adminController");
 const multer = require('multer');
 const path = require('path');
 
@@ -40,6 +41,7 @@ router.post('/updateuser', upload.single("profileImage"), (req, res, next) => {
     req.fileName = req.file.filename;
     next();
 }, updateUser);
+
 router.post('/addassignment', createAssignment);
 router.get('/getassignments', getAssignments);
 router.post('/getcourseassignments', getAssignmentsByCourse);
@@ -52,6 +54,12 @@ router.post('/getSchedulesByCourse', getScheduleByCourse);
 router.post('/getSchedule',getSchedule)
 router.post('/getParticipants',getParticipantsByCourse);
 router.get('/getupdateuser', getUserDetails);
+router.get('/getUsers', getUsers);
+router.post('/getUserName', getUserName);
+router.post('/deleteUser',deleteUser);
+router.post('/deleteCourse',deleteCourse);
+router.post('/submitReports',submitReports);
+router.get('/Reports',getReports);
 
 
 

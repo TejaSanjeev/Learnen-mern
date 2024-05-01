@@ -20,7 +20,7 @@ export default function Explore() {
 
   return (
     <div className="sd-explore-main-wrapper">
-      <SearchBar /> <br /> 
+      {/* <SearchBar /> <br />  */}
       <div className="sd-explore-heading">
         <h3  className="sd-explore-heading1">Most Popular</h3>
       </div>

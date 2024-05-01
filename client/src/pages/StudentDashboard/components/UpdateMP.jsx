@@ -1,4 +1,4 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import userIcon from "../assets/user.png";
 import axios from "axios";
 function UpdateMP() {
@@ -23,7 +23,7 @@ function UpdateMP() {
         );
         console.log(response.data);
         setUserData(response.data);
-        console.log("user data",userData);
+        console.log("user data", userData);
         if (!response.data.LinkedIn) {
           setDefaultTrue(true);
         }
@@ -36,20 +36,15 @@ function UpdateMP() {
 
   async function handleSubmit() {
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/updateuser",
-        userData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      console.log("User data updated successfully:", response.data);
+      await axios.post("http://localhost:3000/api/updateuser", {
+        userId: user._id, 
+        userData: userData,
+      });
     } catch (error) {
       console.error("Error updating user data:", error);
     }
   }
+  
 
   function handleChange(event, field) {
     setUserData({ ...userData, [field]: event.target.value });
@@ -62,7 +57,7 @@ function UpdateMP() {
     <>
       <div className="updateMP-wrapper">
         <div className="updateMP-top">
-        {!userData.profileImage? (
+          {!userData.profileImage ? (
             <img
               src={userIcon}
               alt="Profile"
@@ -104,7 +99,9 @@ function UpdateMP() {
                   type="text"
                   className="updateMP-input1"
                   placeholder="First Name"
-                  value={userData.userName?userData.userName.split("  ")[0] : ""}
+                  value={
+                    userData.userName ? userData.userName.split("  ")[0] : ""
+                  }
                   onChange={(event) => handleChange(event, "firstName")}
                 />
               </div>
@@ -122,12 +119,16 @@ function UpdateMP() {
               <div className="updateMP-input-wrapper">
                 <label>Date of Birth</label>
                 <br />
-                <input 
-                type="date"
-                className="updateMP-input-date" 
-                placeholder="Date of Birth"
-                value={userData.dateOfBirth?userData.dateOfBirth.split("T")[0] : ""}
-                onChange={(event) => handleChange(event, "dateOfBirth")}
+                <input
+                  type="date"
+                  className="updateMP-input-date"
+                  placeholder="Date of Birth"
+                  value={
+                    userData.dateOfBirth
+                      ? userData.dateOfBirth.split("T")[0]
+                      : ""
+                  }
+                  onChange={(event) => handleChange(event, "dateOfBirth")}
                 />
               </div>
               <div className="updateMP-input-wrapper">
@@ -151,7 +152,9 @@ function UpdateMP() {
                   type="text"
                   className="updateMP-input1"
                   placeholder="Last Name"
-                  value={userData.userName?userData.userName.split("  ")[1] : ""}
+                  value={
+                    userData.userName ? userData.userName.split("  ")[1] : ""
+                  }
                   onChange={(event) => handleChange(event, "lastName")}
                 ></input>
               </div>
@@ -163,7 +166,9 @@ function UpdateMP() {
                   className="updateMP-input"
                   placeholder="Academic Qualifications"
                   value={userData.academicQualifications}
-                  onChange={(event) => handleChange(event, "academicQualifications")}
+                  onChange={(event) =>
+                    handleChange(event, "academicQualifications")
+                  }
                 ></input>
               </div>
               <p className="updateMP-socials">
